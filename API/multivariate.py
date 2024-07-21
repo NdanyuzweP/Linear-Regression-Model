@@ -11,13 +11,14 @@ scaler = joblib.load('scaler.joblib')
 
 class Body(BaseModel):
    number_courses: int
-   time_study: int
+   time_study: float
 
-app.get('/')
+
+@app.get('/')
 def read_root():
    return("Fast api by Prince Ndanyuzwe that predicts studentmarks using time studied and number of courses")
 
-app.post('/predict')
+@app.post('/predict')
 def predict(data: Body):
    body = np.array([[
       data.number_courses,
